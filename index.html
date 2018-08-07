@@ -25,7 +25,7 @@
       <div class="row" :style="appStyles">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header" :class="formSubmitClass">
+            <div class="card-header">
               {{event.eventDate}}
             </div>
             <div class="card-block">
@@ -36,6 +36,7 @@
               <form class="form-inline" @submit.prevent="addStalker">
                 <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" v-model="newNameText">
                 <input type="submit" class="btn btn-danger"></input>
+                <button @click="methodCall">Zrób coś</button>
               </form>
             </div>
           </div>
@@ -46,12 +47,16 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              Stalkers ( {{ stalkersList.length }} )
+              Stalkers ( {{ stalkersList.length }} / {{ eventCapacity }})
+              <br>
+              <progress :style="{ width: eventCapacityPercentage + '%' }">
+
+              </progress>
             </div>
             <div class="card-block">
               <div v-if="stalkersList.length > 0">
                 <div class="card-danger rounded name-box"
-                v-for="name in stalkersList">
+                v-for="name in sortNames">
                     {{name}}
                 </div>
               </div>
