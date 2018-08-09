@@ -34,9 +34,10 @@
               <p class="card-text">Add your name to the list so we know, who were trying to interrupt us:</p>
 
               <form class="form-inline" @submit.prevent="addStalker">
-                <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" v-model="newNameText">
+                <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" v-model="newNameText"
+                @keyup.space="keyPressed">
                 <input type="submit" class="btn btn-danger"></input>
-                <button @click="methodCall">Zrób coś</button>
+               
               </form>
             </div>
           </div>
@@ -56,8 +57,8 @@
             <div class="card-block">
               <div v-if="stalkersList.length > 0">
                 <div class="card-danger rounded name-box"
-                v-for="name in sortNames">
-                    {{name}}
+                v-for="(name, index) in sortNames" :key="index">
+                    {{index + 1 }}. {{ name | toUpper }}
                 </div>
               </div>
               <div v-else>

@@ -22,13 +22,23 @@ new Vue ({
                 this.eventCapacityPercentage = this.stalkersList.length/this.eventCapacity * 100;
             }
         },
-        methodCall: function() {
-            this.appStyles.marginTop = "50px";
+        keyPressed : function() { 
+            console.log('Key pressed!')
         }
     },
     computed: {
         sortNames: function() {
             return this.stalkersList.sort();
+        }
+    },
+    watch: {
+        stalkersList : function(data) { 
+            console.log('List change!');
+        }
+    },
+    filters: {
+        toUpper: function(data){
+            return data.toUpperCase();
         }
     }
 });
